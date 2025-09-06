@@ -287,6 +287,22 @@
         {%- endif -%}
       </a>
     </div>
+
+
+
+  {% assign current_hour = 'now' | date: "%H" | plus: 0 %}
+
+  {% if current_hour < 12 %}
+    Good morning! ☀️
+  {% elsif current_hour < 18 %}
+    Good afternoon! 🌤
+  {% elsif current_hour < 21 %}
+    Good evening! 🌙
+  {% else %}
+    Good night! 🌌
+  {% endif %}
+
+
   </header>
 </{{ header_tag }}>
 
@@ -445,6 +461,10 @@
     }
   </script>
 {%- endif -%}
+
+
+
+
 
 {% schema %}
 {
