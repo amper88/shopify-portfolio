@@ -1,0 +1,137 @@
+{% comment %}
+  Announcement Bar Scheduler - Liquid Snippet
+  Copy this to your theme's snippets folder: theme/snippets/announcement-bar.liquid
+{% endcomment %}
+
+<div id="announcement-bar-container"></div>
+
+<style>
+  #announcement-bar {
+    width: 100%;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    z-index: 999;
+    box-sizing: border-box;
+  }
+  
+  #announcement-bar a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  #announcement-bar a:hover {
+    text-decoration: underline;
+  }
+  
+  #announcement-bar .close-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+  
+  #announcement-bar .close-btn:hover {
+    opacity: 0.7;
+  }
+  
+  .announcement-bar-hidden {
+    display: none !important;
+  }
+
+  @media (max-width: 768px) {
+    #announcement-bar {
+      padding: 8px 15px;
+      font-size: 13px;
+    }
+    
+    #announcement-bar .close-btn {
+      right: 10px;
+    }
+  }
+</style>
+
+<script>
+(function() {
+  // Configuration - Replace with your app's URL
+  const APP_URL = 'https://your-app-url.herokuapp.com'; // Replace with your deployed app URL
+  const LOCAL_APP_URL = 'http://localhost:3000'; // For local development
+  
+  // Use local URL if in development, otherwise use deployed URL
+  const API_BASE = window.location.hostname === 'localhost' ? LOCAL_APP_URL : APP_URL;
+  
+  // Get shop domain
+  const shopDomain = window.location.hostname;
+  
+  // Load announcement
+  async function loadAnnouncement() {
+    try {
+      const response = await fetch(`${API_BASE}/api/announcements/active?shop=${shopDomain}`);
+      const data = await response.json();
+      
+      if (data.success && data.data) {
+        displayAnnouncement(data.data);
+      }
+    } catch (error) {
+      console.error('Error loading announcement:', error);
+    }
+  }
+  
+  // Display announcement
+  function displayAnnouncement(announcement) {
+    const container = document.getElementById('announcement-bar-container');
+    if (!container) return;
+    
+    // Check if announcement was dismissed
+    const dismissedKey = `announcement-dismissed-${announcement.id}`;
+    if (localStorage.getItem(dismissedKey)) {
+      return;
+    }
+    
+    // Create announcement bar
+    const announcementBar = document.createElement('div');
+    announcementBar.id = 'announcement-bar';
+    announcementBar.style.backgroundColor = announcement.background_color || '#000000';
+    announcementBar.style.color = announcement.text_color || '#ffffff';
+    
+    // Create content
+    let content = announcement.message;
+    
+    // Add link if provided
+    if (announcement.link_url) {
+      content = `<a href="${announcement.link_url}">${content}</a>`;
+    }
+    
+    // Add close button
+    content += `<button class="close-btn" onclick="dismissAnnouncement(${announcement.id})">&times;</button>`;
+    
+    announcementBar.innerHTML = content;
+    container.appendChild(announcementBar);
+    
+    // Add to global scope for close functionality
+    window.dismissAnnouncement = function(announcementId) {
+      localStorage.setItem(`announcement-dismissed-${announcementId}`, 'true');
+      const bar = document.getElementById('announcement-bar');
+      if (bar) {
+        bar.style.display = 'none';
+      }
+    };
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadAnnouncement);
+  } else {
+    loadAnnouncement();
+  }
+})();
+</script>
