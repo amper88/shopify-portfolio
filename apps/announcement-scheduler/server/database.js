@@ -125,7 +125,21 @@ const dbOperations = {
         else resolve({ deletedId: id });
       });
     });
-  }
+  },
+
+  // Reset DB - Remove all Announcements
+  deleteAllAnnouncements: async () => {
+  return new Promise((resolve, reject) => {
+    db.run('DELETE FROM announcements', function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve({ changes: this.changes });
+      }
+    });
+  });
+}
+
 };
 
 module.exports = { initDatabase, dbOperations, db };

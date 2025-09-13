@@ -78,6 +78,7 @@ Include it in `layout/theme.liquid` right after `<body>`:
 - `PUT /api/announcements/:id` – Update announcement  
 - `DELETE /api/announcements/:id` – Delete announcement  
 - `GET /api/announcements/active` – Get active announcement  
+- `GET /api/reset` – Delete All Announcements
 
 ## Testing
 

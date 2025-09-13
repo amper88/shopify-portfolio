@@ -90,6 +90,20 @@ app.delete('/api/announcements/:id', async (req, res) => {
   }
 });
 
+// Reset DB - Remove all announcements
+// Reset announcements (solo testing/portfolio)
+app.get('/api/reset', async (req, res) => {
+  try {
+    await dbOperations.deleteAllAnnouncements();
+    res.json({ success: true, message: 'Database reset' });
+  } catch (err) {
+    console.error('Error resetting DB:', err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'Announcement Scheduler API is running!' });
