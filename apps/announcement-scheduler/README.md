@@ -51,13 +51,15 @@ npm run dev
 
 3. **Add to your Shopify theme**
 
-Copy the snippet:
+3- 1- Copy the snippet:
 
 ```bash
-cp theme-integration/announcement-bar.liquid ../theme-amper/snippets/
+cp theme-integration/snippets/announcement-bar.liquid ../theme-amper/snippets/
+cp theme-integration/assets/announcement-bar.css ../theme-amper/assets/
+cp theme-integration/assets/announcement-bar.js ../theme-amper/assets/
 ```
 
-Include it in `layout/theme.liquid` right after `<body>`:
+3- 2- Include the snippet in layout/theme.liquid right after <body>:
 
 ```liquid
 {% render 'announcement-bar' %}

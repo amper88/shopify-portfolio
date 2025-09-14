@@ -1,0 +1,9 @@
+{% comment %}
+  Announcement Bar Scheduler - Liquid Snippet
+  Requires: assets/announcement-bar.css & assets/announcement-bar.js
+{% endcomment %}
+
+{{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
+{{ 'announcement-bar.js' | asset_url | script_tag }}
+
+<div id="announcement-bar-container"></div>
