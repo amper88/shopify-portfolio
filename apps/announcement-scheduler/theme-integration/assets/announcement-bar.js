@@ -22,39 +22,48 @@
     }
   }
 
-  // Render announcement bar in the storefront
-  function displayAnnouncement(announcement) {
-    const container = document.getElementById('announcement-bar-container');
-    if (!container) return;
+    // Render announcement bar in the storefront
+    // Display announcement
+    function displayAnnouncement(announcement) {
+        const container = document.getElementById('announcement-bar-container');
+        if (!container) return;
 
-    // Skip if user already dismissed this announcement
-    const dismissedKey = `announcement-dismissed-${announcement.id}`;
-    if (localStorage.getItem(dismissedKey)) return;
+        // Skip if user already dismissed this announcement
+        const dismissedKey = `announcement-dismissed-${announcement.id}`;
+        if (localStorage.getItem(dismissedKey)) return;
 
-    // Create main wrapper
-    const bar = document.createElement('div');
-    bar.id = 'announcement-bar';
-    bar.style.backgroundColor = announcement.background_color || '#000000';
-    bar.style.color = announcement.text_color || '#ffffff';
+        // Create main wrapper
+        const bar = document.createElement('div');
+        bar.id = 'announcement-bar';
+        bar.style.backgroundColor = announcement.background_color || '#000000';
+        bar.style.color = announcement.text_color || '#ffffff';
 
-    // Build content (message + optional link)
-    let content = announcement.message;
-    if (announcement.link_url) {
-      content = `<a href="${announcement.link_url}">${content}</a>`;
+        // Create message (with optional link)
+        let contentElement;
+        if (announcement.link_url) {
+            contentElement = document.createElement('a');
+            contentElement.href = announcement.link_url;
+            contentElement.textContent = announcement.message;
+        } else {
+            contentElement = document.createElement('span');
+            contentElement.textContent = announcement.message;
+        }
+        bar.appendChild(contentElement);
+
+        // Create close button
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'close-btn';
+        closeBtn.innerHTML = '&times;';
+        closeBtn.addEventListener('click', () => {
+            localStorage.setItem(dismissedKey, 'true');
+            bar.style.display = 'none';
+        });
+        bar.appendChild(closeBtn);
+
+        // Append to container
+        container.appendChild(bar);
     }
 
-    // Add dismiss/close button
-    content += `<button class="close-btn" onclick="dismissAnnouncement(${announcement.id})">&times;</button>`;
-    bar.innerHTML = content;
-    container.appendChild(bar);
-
-    // Expose dismiss logic to global scope
-    window.dismissAnnouncement = function(announcementId) {
-      localStorage.setItem(`announcement-dismissed-${announcementId}`, 'true');
-      const bar = document.getElementById('announcement-bar');
-      if (bar) bar.style.display = 'none';
-    };
-  }
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
