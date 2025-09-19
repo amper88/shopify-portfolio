@@ -6,4 +6,16 @@
 {{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'announcement-bar.js' | asset_url }}" defer></script>
 
-<div id="announcement-bar-container"></div>
+<div id="announcement-bar-container">
+  <div style="background:#f9f9f9; color:#333; padding:10px; text-align:center; font-size:13px; border:1px dashed #ccc;">
+    ⚠️ <strong>Custom Announcement Bar active</strong><br>
+    This is a Liquid snippet connected to an external Node.js + React app.<br>
+    👉 <a href="https://shopify-portfolio.onrender.com/" target="_blank" style="color:#007ace; text-decoration:underline;">
+      Open live app
+    </a><br>
+    For setup instructions, visit the 
+    <a href="https://github.com/amper88/shopify-portfolio" target="_blank" style="color:#007ace; text-decoration:underline;">
+      GitHub repository
+    </a>.
+  </div>
+</div>

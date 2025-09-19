@@ -28,6 +28,9 @@
         const container = document.getElementById('announcement-bar-container');
         if (!container) return;
 
+          // Remove placeholder message if exists
+        container.innerHTML = '';    
+
         // Skip if user already dismissed this announcement
         const dismissedKey = `announcement-dismissed-${announcement.id}`;
         if (localStorage.getItem(dismissedKey)) return;
