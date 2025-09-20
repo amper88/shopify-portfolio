@@ -15,59 +15,90 @@ A custom Shopify app that lets you schedule announcement bars with start and end
 ## Project Structure
 
 ```
-announcement-scheduler/
-├── server/                 # Backend (Node.js + Express)
-│   ├── index.js
-│   ├── database.js
-│   └── announcements.db
-├── client/                 # Frontend (React + Polaris)
-│   ├── src/
-│   │   ├── App.js
-│   │   └── components/
-│   │       └── AnnouncementManager.js
-│   └── package.json
-├── theme-integration/      # Shopify theme integration
-│   └── announcement-bar.liquid
-└── package.json
+ROOT FOLDER: announcement-scheduler/
+├── package.json              ← Main app configuration & dependencies
+├── .env                      ← Environment variables (like API keys)
+├── README.md                 ← Documentation for developers
+├── INSTRUCTIONS.txt          ← This file!
+├── 
+├── server/                   ← BACKEND (The brain of your app)
+│   ├── index.js             ← Main server file - handles API requests
+│   ├── database.js          ← Database functions (save/load announcements)
+│   └── announcements.db     ← SQLite database file (created automatically)
+├── 
+├── client/                   ← FRONTEND (Admin interface merchants see)
+│   ├── package.json         ← React app configuration
+│   ├── public/
+│   │   └── index.html       ← Basic HTML template
+│   └── src/
+│       ├── index.js         ← React app entry point
+│       ├── App.js           ← Main app wrapper with Shopify styling
+│       └── components/
+│           └── AnnouncementManager.js ← Admin interface component
+└── 
+└── theme-integration/        ← SHOPIFY THEME FILES
+    └── announcement-bar.liquid ← Code to display announcements on storefront
+
 ```
 
-## Quick Start
+## 🚀 Running the App
+### 🔹 Option 1 – Local Setup (development)
 
-1. **Install dependencies**
+This option is for running and modifying the app on your own machine.
 
-```bash
+1. Install dependencies
+
 npm install
 cd client && npm install && cd ..
-```
 
-2. **Run development servers**
 
-```bash
+2. Run development servers
+
 npm run dev
-```
 
-- Backend API: http://localhost:3000  
-- Admin frontend: http://localhost:3001  
 
-3. **Add to your Shopify theme**
+Backend API → http://localhost:3000
 
-3- 1- Copy the snippet:
+Admin frontend → http://localhost:3001
 
-```bash
+3. Build frontend (only when changes are made in client/) - optional
+This compiles the React app into static files so the backend can serve them.
+
+cd client
+npm run build
+cd ..
+npm start
+
+
+Visit http://localhost:3000
+ → you’ll see the admin panel served directly by the backend.
+
+Reminder: run npm run build every time you change something in the client/ code and want to preview it without npm run dev.
+
+4. Add to your Shopify theme
+4.1. Copy integration files:
+
 cp theme-integration/snippets/announcement-bar.liquid ../theme-amper/snippets/
 cp theme-integration/assets/announcement-bar.css ../theme-amper/assets/
 cp theme-integration/assets/announcement-bar.js ../theme-amper/assets/
-```
 
-3- 2- Include the snippet in layout/theme.liquid right after <body>:
 
-```liquid
+4.2. Include snippet in theme.liquid (right after <body>):
+
 {% render 'announcement-bar' %}
-```
 
-## Usage
+### 🔹 Option 2 – Hosted Demo (testing only)
 
-### Admin Panel (http://localhost:3001)
+For quick testing, the app is already deployed on Render.
+
+Admin UI: https://shopify-portfolio.onrender.com
+
+API: https://shopify-portfolio.onrender.com/api
+
+This allows you to explore features without setting up locally.
+
+
+### Admin Panel (http://localhost:3001 or http://localhost:3000 if served by backend)
 
 - Create announcements with title, message, dates, and styles  
 - Manage existing announcements (activate, edit, delete)  

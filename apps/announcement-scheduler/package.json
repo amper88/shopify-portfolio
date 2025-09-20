@@ -24,6 +24,6 @@
     "concurrently": "^8.2.0"
   },
   "keywords": ["shopify", "app", "announcement", "scheduler"],
-  "author": "Your Name",
+  "author": "AMPer",
   "license": "MIT"
 }
