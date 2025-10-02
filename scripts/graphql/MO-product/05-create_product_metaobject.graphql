@@ -1,0 +1,20 @@
+mutation {
+  metaobjectDefinitionCreate(definition: {
+    name: "ProductSpecs"
+    type: "product_specs"
+    fieldDefinitions: [
+      { name: "Material", key: "material", type: "single_line_text_field" }
+      { name: "Warranty", key: "warranty", type: "single_line_text_field" }
+    ]
+  }) {
+    metaobjectDefinition {
+      id
+      name
+      type
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

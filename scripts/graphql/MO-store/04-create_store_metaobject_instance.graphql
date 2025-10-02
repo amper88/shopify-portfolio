@@ -1,0 +1,18 @@
+mutation {
+  metaobjectCreate(metaobject: {
+    type: "store_info"
+    fields: [
+      { key: "support_email", value: "support@example.com" }
+      { key: "phone_number", value: "+1 234 567 890" }
+    ]
+  }) {
+    metaobject {
+      id
+      type
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

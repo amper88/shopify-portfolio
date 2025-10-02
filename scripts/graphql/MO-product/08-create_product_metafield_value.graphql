@@ -1,0 +1,22 @@
+mutation {
+  metafieldsSet(metafields: [
+    {
+      namespace: "custom"
+      key: "product_specs_ref"
+      type: "metaobject_reference"
+      ownerId: "gid://shopify/Product/9944702976304"
+      value: "gid://shopify/Metaobject/1234567890"
+    }
+  ]) {
+    metafields {
+      id
+      key
+      type { name }
+      value
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

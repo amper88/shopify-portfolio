@@ -1,0 +1,21 @@
+mutation {
+  metafieldsSet(metafields: [
+    {
+      namespace: "custom"
+      key: "delivery_note"
+      type: "single_line_text_field"
+      ownerId: "gid://shopify/Product/9944702976304"
+      value: "Handle with care - FRAGILE"
+    }
+  ]) {
+    metafields {
+      id
+      key
+      value
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

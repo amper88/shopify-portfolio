@@ -1,0 +1,20 @@
+mutation {
+  metaobjectDefinitionCreate(definition: {
+    name: "StoreInfo"
+    type: "store_info"
+    fieldDefinitions: [
+      { name: "Support Email", key: "support_email", type: "single_line_text_field" }
+      { name: "Phone Number", key: "phone_number", type: "single_line_text_field" }
+    ]
+  }) {
+    metaobjectDefinition {
+      id
+      name
+      type
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

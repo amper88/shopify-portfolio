@@ -1,0 +1,19 @@
+mutation {
+  metafieldDefinitionCreate(definition: {
+    name: "Delivery note"
+    namespace: "custom"
+    key: "delivery_note"
+    type: SINGLE_LINE_TEXT_FIELD
+    ownerType: PRODUCT
+  }) {
+    createdDefinition {
+      id
+      name
+      key
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

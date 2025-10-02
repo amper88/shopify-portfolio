@@ -1,0 +1,22 @@
+mutation {
+  metafieldDefinitionCreate(definition: {
+    name: "Product Specs Ref"
+    namespace: "custom"
+    key: "product_specs_ref"
+    type: "metaobject_reference"
+    ownerType: PRODUCT
+    validations: [
+      { name: "metaobject_definition_id", value: "gid://shopify/MetaobjectDefinition/<ID_DE_PRODUCTSPECS>" }
+    ]
+  }) {
+    createdDefinition {
+      id
+      name
+      type { name }
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

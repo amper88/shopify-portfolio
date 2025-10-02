@@ -1,0 +1,384 @@
+{
+	"info": {
+		"_postman_id": "3149b46b-ae7f-4947-93cd-ab9a6f5b1ef1",
+		"name": "Shopify Portfolio Scripts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10468777",
+		"_collection_link": "https://solar-firefly-4964.postman.co/workspace/New-Team-Workspace~1f5f8149-5d57-40e8-9b81-9d9d4a3781c9/collection/10468777-3149b46b-ae7f-4947-93cd-ab9a6f5b1ef1?action=share&source=collection_link&creator=10468777"
+	},
+	"item": [
+		{
+			"name": "MF",
+			"item": [
+				{
+					"name": "01-create_metafield",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Shopify-Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation { metafieldDefinitionCreate(definition: { name: \\\"Delivery note\\\" namespace: \\\"custom\\\" key: \\\"delivery_note\\\" type: \\\"single_line_text_field\\\" ownerType: PRODUCT }) { createdDefinition { id name key type { name } } userErrors { field message } } }\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{shop_domain}}/admin/api/2025-01/graphql.json",
+							"protocol": "https",
+							"host": [
+								"{{shop_domain}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"2025-01",
+								"graphql.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02-set_metafield_value",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Shopify-Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation { metafieldsSet(metafields: [ { namespace: \\\"custom\\\" key: \\\"delivery_note\\\" type: \\\"single_line_text_field\\\" ownerId: \\\"gid://shopify/Product/9944702976304\\\" value: \\\"Handle with care - FRAGILE\\\" } ]) { metafields { id key value } userErrors { field message } } }\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{shop_domain}}/admin/api/2025-01/graphql.json",
+							"protocol": "https",
+							"host": [
+								"{{shop_domain}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"2025-01",
+								"graphql.json"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MO-Store",
+			"item": [
+				{
+					"name": "03-create_metaobject",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Shopify-Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation { metaobjectDefinitionCreate(definition: { name: \\\"StoreInfo\\\" type: \\\"store_info\\\" fieldDefinitions: [ { name: \\\"Support Email\\\", key: \\\"support_email\\\", type: \\\"single_line_text_field\\\" } { name: \\\"Phone Number\\\", key: \\\"phone_number\\\", type: \\\"single_line_text_field\\\" } ] }) { metaobjectDefinition { id name type } userErrors { field message } } }\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{shop_domain}}/admin/api/2025-01/graphql.json",
+							"protocol": "https",
+							"host": [
+								"{{shop_domain}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"2025-01",
+								"graphql.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04-create_metaobject_instance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Shopify-Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation { metaobjectCreate(metaobject: { type: \\\"store_info\\\" fields: [ { key: \\\"support_email\\\", value: \\\"support@example.com\\\" } { key: \\\"phone_number\\\", value: \\\"+1 234 567 890\\\" } ] }) { metaobject { id type } userErrors { field message } } }\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{shop_domain}}/admin/api/2025-01/graphql.json",
+							"protocol": "https",
+							"host": [
+								"{{shop_domain}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"2025-01",
+								"graphql.json"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MO-Product",
+			"item": [
+				{
+					"name": "05-create_product_metaobject",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Shopify-Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{shop_domain}}/admin/api/2025-01/graphql.json",
+							"protocol": "https",
+							"host": [
+								"{{shop_domain}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"2025-01",
+								"graphql.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "06-create_product_metaobject_instance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Shopify-Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation { metaobjectCreate(metaobject: { type: \\\"product_specs\\\" fields: [ { key: \\\"material\\\", value: \\\"100% Cotton\\\" } { key: \\\"warranty\\\", value: \\\"2 years\\\" } ] }) { metaobject { id type } userErrors { field message } } }\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{shop_domain}}/admin/api/2025-01/graphql.json",
+							"protocol": "https",
+							"host": [
+								"{{shop_domain}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"2025-01",
+								"graphql.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "07-create_product_metafield_for_metaobject",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Shopify-Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation { metafieldDefinitionCreate(definition: { name: \\\"Product Specs Ref\\\" namespace: \\\"custom\\\" key: \\\"product_specs_ref\\\" type: \\\"metaobject_reference\\\" ownerType: PRODUCT validations: [ { name: \\\"metaobject_definition_id\\\", value: \\\"gid://shopify/MetaobjectDefinition/12558238000\\\" } ] }) { createdDefinition { id name type { name } } userErrors { field message } } }\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{shop_domain}}/admin/api/2025-01/graphql.json",
+							"protocol": "https",
+							"host": [
+								"{{shop_domain}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"2025-01",
+								"graphql.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "08-create_product_metafield_value",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Shopify-Access-Token",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation { metafieldsSet(metafields: [ { namespace: \\\"custom\\\" key: \\\"product_specs_ref\\\" type: \\\"metaobject_reference\\\" ownerId: \\\"gid://shopify/Product/9944702976304\\\" value: \\\"gid://shopify/Metaobject/175694676272\\\" } ]) { metafields { id key type value } userErrors { field message } } }\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{shop_domain}}/admin/api/2025-01/graphql.json",
+							"protocol": "https",
+							"host": [
+								"{{shop_domain}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"2025-01",
+								"graphql.json"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "key",
+			"value": "X-Shopify-Access-Token",
+			"type": "string"
+		},
+		{
+			"key": "value",
+			"value": "{{access_token}}",
+			"type": "string"
+		},
+		{
+			"key": "type",
+			"value": "text",
+			"type": "string"
+		}
+	]
+}

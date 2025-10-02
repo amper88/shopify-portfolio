@@ -1,0 +1,18 @@
+mutation {
+  metaobjectCreate(metaobject: {
+    type: "product_specs"
+    fields: [
+      { key: "material", value: "100% Cotton" }
+      { key: "warranty", value: "2 years" }
+    ]
+  }) {
+    metaobject {
+      id
+      type
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
