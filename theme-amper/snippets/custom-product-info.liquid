@@ -1,0 +1,7 @@
+{% if product.metafields.custom.delivery_note != blank %}
+  <p class="delivery-note">
+    Note: {{ product.metafields.custom.delivery_note }}
+  </p>
+{% else %}
+    Delivery note metafield not set or definition missing.
+{% endif %}
