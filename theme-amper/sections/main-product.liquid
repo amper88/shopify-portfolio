@@ -680,6 +680,9 @@
           {%- comment -%} ADDED CUSTOM PRODUCT INFO DELIVERY NOTE METAFIELD {%- endcomment -%}
           {% render 'custom-product-info' %}
 
+          {%- comment -%} ADDED CUSTOM PRODUCT SPECS product_specs_ref METAOBJECT {%- endcomment -%}
+          {% render 'custom-product-specs' %}
+          
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
             {{ 'products.product.view_full_details' | t }}
             {{- 'icon-arrow.svg' | inline_asset_content -}}
