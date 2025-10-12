@@ -319,6 +319,17 @@
       </div>
     </div>
   </div>
+
+{%- comment -%}
+Added custom store object info on the footer.
+{%- endcomment -%}
+{% if section.settings.show_store_info %}
+  {% render 'custom-store-info' %}
+{% endif %}
+
+
+
+
 </footer>
 
 {% schema %}
@@ -529,6 +540,12 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "show_store_info",
+      "label": "Show Store Info block",
+      "default": true
     }
   ],
   "default": {

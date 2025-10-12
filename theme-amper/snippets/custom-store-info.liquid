@@ -1,0 +1,21 @@
+{% assign store_info = shop.metaobjects.store_info.values | first %}
+{% if store_info %}
+  <div class="store-info-wrapper">
+    <div class="store-info">
+      {% if store_info.support_email != blank %}
+        <p class="store-info-item">
+          <strong>Email:</strong> {{ store_info.support_email }}
+        </p>
+      {% endif %}
+      {% if store_info.phone_number != blank %}
+        <p class="store-info-item">
+          <strong>Phone:</strong> {{ store_info.phone_number }}
+        </p>
+      {% endif %}
+    </div>
+  </div>
+{% else %}
+  {%- comment -%}
+    StoreInfo metaobject not defined or instance missing
+  {%- endcomment -%}
+{% endif %}

@@ -3595,3 +3595,23 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* footer store info custom styles */
+.store-info-wrapper {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.store-info {
+  display: inline-block;
+  text-align: left;
+  color: var(--color-foreground, #333);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.store-info-item {
+  margin: 0.2rem 0;
+}
