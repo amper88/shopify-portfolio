@@ -1,0 +1,20 @@
+<div class='product-specs-container'>
+    {% if product.metafields.custom.product_specs_ref and product.metafields.custom.product_specs_ref.value %}
+    {% assign specs = product.metafields.custom.product_specs_ref.value %}
+    <div class="product-specs">
+        <h3>Product specifications</h3>
+        <ul>
+        {% if specs.material != blank %}
+            <li><strong>Material:</strong> {{ specs.material }}</li>
+        {% endif %}
+        {% if specs.warranty != blank %}
+            <li><strong>Warranty:</strong> {{ specs.warranty }}</li>
+        {% endif %}
+        </ul>
+    </div>
+    {% else %}
+    
+        No ProductSpecs metaobject linked for this product
+    
+    {% endif %}
+</div>
