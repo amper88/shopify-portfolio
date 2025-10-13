@@ -37,6 +37,6 @@ Highlights:
 
 **Metafields:** Custom “Delivery Note” displayed per product.  
 **Metaobjects:** ProductSpecs (Material, Warranty) linked via reference.  
-**Footer Integration:** StoreInfo metaobject (Email, Phone) toggleable via Theme Editor.
-**GraphQL Scripts:** Includes ready-to-run mutations to create metafields, metaobjects, and product references.
-**Announcement Scheduler App** – Custom app built with Node.js + React (Polaris) to manage timed store announcements.
+**Footer Integration:** StoreInfo metaobject (Email, Phone) toggleable via Theme Editor.  
+**GraphQL Scripts:** Includes ready-to-run mutations to create metafields, metaobjects, and product references.  
+**Announcement Scheduler App:** Custom app built with Node.js + React (Polaris) to manage timed store announcements.
