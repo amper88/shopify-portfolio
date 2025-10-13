@@ -1,7 +1,7 @@
 # Shopify Portfolio – Amper Clothing Co.
 
 **Live Demo:**  
-[https://amper-myportfolio.myshopify.com](https://amper-myportfolio.myshopify.com)  
+[https://amper-myportfolio.myshopify.com](https://amper-myportfolio.myshopify.com) pwd: getready
 
 **Product Example (Metaobjects in action):**  
 [Amper Cap](https://amper-myportfolio.myshopify.com/products/amper-cap)
