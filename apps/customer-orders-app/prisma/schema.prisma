@@ -32,3 +32,16 @@ model Session {
   refreshToken        String?
   refreshTokenExpires DateTime?
 }
+
+model OrderCache {
+  id               Int      @id @default(autoincrement())
+  shop             String
+  shopifyOrderId   String   @unique
+  orderName        String
+  customerId       String?
+  customerEmail    String?
+  totalPrice       String?
+  currencyCode     String?
+  createdAtShopify DateTime?
+  createdAt        DateTime @default(now())
+}
