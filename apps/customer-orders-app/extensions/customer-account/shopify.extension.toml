@@ -16,7 +16,7 @@ uid = "a1e8181d-5b41-4506-b4b4-74b9dcbd8c526dc5fa64"
 # https://shopify.dev/docs/api/customer-account-ui-extensions/unstable/extension-targets-overview
 
 [[extensions.targeting]]
-module = "./src/OrderStatusBlock.jsx"
+module = "./src/CustomerProfileBlock.jsx"
 target = "customer-account.profile.block.render"
 
 [extensions.capabilities]

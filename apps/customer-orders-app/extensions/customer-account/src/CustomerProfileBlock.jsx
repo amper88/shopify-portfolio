@@ -2,7 +2,7 @@ import '@shopify/ui-extensions/preact';
 import {render} from "preact";
 import {useEffect, useState} from "preact/hooks";
 
-const APP_URL = "https://hiking-knee-scratch-hits.trycloudflare.com";
+const APP_URL = "https://sir-seem-vertical-geo.trycloudflare.com";
 
 export default async () => {
   render(<Extension />, document.body);
@@ -15,14 +15,20 @@ function Extension() {
   useEffect(() => {
     async function loadOrders() {
       try {
-        const res = await fetch(`${APP_URL}/api/orders`);
+        // 👇 esto viene del runtime de Shopify
+        const token = await shopify.sessionToken.get();
+
+        const res = await fetch(`${APP_URL}/api/orders`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         if (!res.ok) {
           throw new Error(`HTTP ${res.status}`);
         }
 
         const data = await res.json();
-        console.log("DATA", data);
 
         if (!data.orders || data.orders.length === 0) {
           setMessage("No synced orders");
@@ -50,10 +56,10 @@ function Extension() {
 
   return (
     <s-stack>
-      <s-text>📦 Synced orders</s-text>
+      <s-text>📦 My orders</s-text>
       {orders.map((order) => (
         <s-text key={order.id}>
-          {order.name} — {order.total || ""} {order.currency || ""}
+          {order.orderName} — {order.totalPrice} {order.currencyCode} - {order.createdAt}
         </s-text>
       ))}
     </s-stack>
